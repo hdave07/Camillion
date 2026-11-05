@@ -1,4 +1,4 @@
-# O' Camillion
+# 🐪 O' Camillion 🐪
 Authors:
 - Meira Chenicheri (mc3227)
 - Roma Rangaswamy (rr829)
