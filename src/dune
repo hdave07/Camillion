@@ -1,0 +1,7 @@
+; Core game library. PURE OCaml only: no Unix, no network, no file IO.
+; It must compile both natively (server/, bin/) and to JavaScript (web/).
+
+(library
+ (name camillion)
+ (public_name camillion)
+ (libraries yojson))

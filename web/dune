@@ -1,0 +1,6 @@
+; Browser front end, compiled to JavaScript: _build/default/web/main.bc.js
+
+(executable
+ (name main)
+ (modes js)
+ (libraries camillion brr js_of_ocaml-lwt lwt))

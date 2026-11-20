@@ -1,0 +1,5 @@
+; Offline build step only. Never linked into server/ or web/.
+
+(executable
+ (name main)
+ (libraries camillion lwt lwt.unix cohttp-lwt-unix lambdasoup yojson))

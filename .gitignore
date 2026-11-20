@@ -1,0 +1,6 @@
+_build/
+*.install
+.merlin
+data/raw/*
+!data/raw/.gitkeep
+.DS_Store

@@ -1,0 +1,5 @@
+; Terminal fallback: plays a round using the same core library as the server.
+
+(executable
+ (name main)
+ (libraries camillion yojson))

@@ -1,0 +1,3 @@
+(test
+ (name main)
+ (libraries camillion ounit2))
