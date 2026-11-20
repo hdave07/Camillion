@@ -97,7 +97,7 @@ Every `.ml` has a matching `.mli`. **Write the `.mli` first**, with comments on 
 
 These are the agreements that let people work in parallel. **Before changing any of them, message the team channel and get agreement** (team contract → "Review and integration").
 
-### 5.1 Tiers (`src/tier.mli`) — fixed by the proposal
+### 5.1 Tiers (`src/tier.mli`)
 
 | Tier | Miles | Meaning |
 |---|---|---|
@@ -110,7 +110,7 @@ These are the agreements that let people work in parallel. **Before changing any
 
 A timed-out answer adds 0 miles.
 
-### 5.2 Endpoints (`src/api.mli`) — ⚠️ DRAFT until Thursday (Teju + Meira)
+### 5.2 Endpoints (`src/api.mli`)
 
 | Route | Request | Response |
 |---|---|---|
@@ -118,8 +118,6 @@ A timed-out answer adds 0 miles.
 | `POST /api/answer` | `{ "prompt_id": ..., "text": "<raw player input>" }` | `{ "tier": ..., "balloons": ..., "miles": ... }`, or a "no match" response |
 
 The server also serves `/` (`web/static/index.html`), `/static/**` (`web/static/`), and `/main.js` (`_build/default/web/main.bc.js`).
-
-Once the shape is agreed, Meira can build against a hardcoded response while Teju finishes the server.
 
 ### 5.3 Bank file format (`src/bank.mli`)
 
