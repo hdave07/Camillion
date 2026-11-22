@@ -30,7 +30,7 @@ let round =
   {
     Api.prompts =
       [
-        { Api.id = "africa"; text = "Name a country in Africa" };
+        { Api.id = "disney"; text = "Name a Disney animated movie" };
         { Api.id = "fruit"; text = "Name a fruit" };
       ];
   }
@@ -42,7 +42,7 @@ let round_tests =
     ( "round JSON shape" >:: fun _ ->
       assert_equal
         ~printer:(fun s -> s)
-        {|{"prompts":[{"id":"africa","text":"Name a country in Africa"},{"id":"fruit","text":"Name a fruit"}]}|}
+        {|{"prompts":[{"id":"disney","text":"Name a Disney animated movie"},{"id":"fruit","text":"Name a fruit"}]}|}
         (json_string (Api.round_response_to_json round)) );
     ( "round round-trips" >:: fun _ ->
       assert_equal (Ok round)
@@ -64,14 +64,14 @@ let request_tests =
   [
     ( "valid request" >:: fun _ ->
       assert_equal
-        (Ok { Api.prompt_id = "africa"; text = "chad" })
+        (Ok { Api.prompt_id = "disney"; text = "mulan" })
         (Api.answer_request_of_json
-           (parse {|{"prompt_id":"africa","text":"chad"}|})) );
+           (parse {|{"prompt_id":"disney","text":"mulan"}|})) );
     ( "extra fields ignored" >:: fun _ ->
       assert_equal
-        (Ok { Api.prompt_id = "africa"; text = "chad" })
+        (Ok { Api.prompt_id = "disney"; text = "mulan" })
         (Api.answer_request_of_json
-           (parse {|{"text":"chad","prompt_id":"africa","x":1}|})) );
+           (parse {|{"text":"mulan","prompt_id":"disney","x":1}|})) );
     ( "missing text" >:: fun _ ->
       assert_bool "should be Error"
         (is_error (Api.answer_request_of_json (parse {|{"prompt_id":"a"}|}))) );
@@ -86,14 +86,15 @@ let request_tests =
   ]
 
 let matched =
-  Api.Matched { answer = "Chad"; tier = Tier.Updraft; balloons = 3; miles = 16 }
+  Api.Matched
+    { answer = "Mulan"; tier = Tier.Updraft; balloons = 3; miles = 16 }
 
 let response_tests =
   [
     ( "matched JSON shape" >:: fun _ ->
       assert_equal
         ~printer:(fun s -> s)
-        {|{"result":"match","answer":"Chad","tier":"updraft","balloons":3,"miles":16}|}
+        {|{"result":"match","answer":"Mulan","tier":"updraft","balloons":3,"miles":16}|}
         (json_string (Api.answer_response_to_json matched)) );
     ( "no match JSON shape" >:: fun _ ->
       assert_equal

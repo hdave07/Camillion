@@ -4,15 +4,7 @@
 
    Shared contract between server/ and web/: the request and response types of
    the two MS2 endpoints and their JSON conversion. Both sides use these
-   functions, so the JSON shape is defined in exactly one place.
-
-   GET /api/round response: {"prompts": [{"id": "africa", "text": "Name a
-   country in Africa"}]}
-
-   POST /api/answer request: {"prompt_id": "africa", "text": "<raw player
-   input>"} response: {"result": "match", "answer": "Chad", "tier": "updraft",
-   "balloons": 3, "miles": 16} or: {"result": "no_match"} errors: HTTP 400 (bad
-   JSON) or 404 (unknown prompt_id) with {"error": "<message>"} *)
+   functions, so the JSON shape is defined in exactly one place. *)
 
 type prompt_view = {
   id : string;

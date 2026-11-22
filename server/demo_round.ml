@@ -3,10 +3,8 @@
    Owner: Teju (primary), Meira (secondary)
 
    TEMPORARY stand-in for Bank + Engine so the two endpoints work end to end
-   before Roma's loader and Saranya's round engine are merged. Once they are: -
-   load data/bank/*.json at startup and pass it to Bank, - ask Engine for the
-   round's prompts, - delete this file. Tiers here are placeholders, not real
-   rarity data. *)
+   before loader and round engine are merged. Tiers here are placeholders, not
+   real rarity data. *)
 
 open Camillion
 
@@ -20,22 +18,6 @@ let e name aliases tier = { Matcher.name; aliases; tier }
 
 let prompts =
   [
-    {
-      id = "africa";
-      text = "Name a country in Africa";
-      answers =
-        [
-          e "Nigeria" [] Tier.Sand;
-          e "Egypt" [] Tier.Sand;
-          e "Kenya" [] Tier.Breeze;
-          e "Morocco" [] Tier.Breeze;
-          e "Côte d'Ivoire" [ "Ivory Coast" ] Tier.Updraft;
-          e "Chad" [] Tier.Updraft;
-          e "Burkina Faso" [ "Burkina" ] Tier.JetStream;
-          e "Eswatini" [ "Swaziland" ] Tier.OneInACamillion;
-          e "São Tomé and Príncipe" [ "Sao Tome" ] Tier.Interstellar;
-        ];
-    };
     {
       id = "fruit";
       text = "Name a fruit";
@@ -52,18 +34,36 @@ let prompts =
         ];
     };
     {
-      id = "planet";
-      text = "Name a planet in our solar system";
+      id = "cornell";
+      text = "Name a building on Cornell's campus";
       answers =
         [
-          e "Earth" [] Tier.Sand;
-          e "Mars" [] Tier.Sand;
-          e "Jupiter" [] Tier.Breeze;
-          e "Saturn" [] Tier.Breeze;
-          e "Venus" [] Tier.Updraft;
-          e "Neptune" [] Tier.JetStream;
-          e "Uranus" [] Tier.OneInACamillion;
-          e "Mercury" [] Tier.Interstellar;
+          e "Olin Library" [ "Olin" ] Tier.Sand;
+          e "Willard Straight Hall" [ "Willard Straight"; "WSH" ] Tier.Sand;
+          e "Uris Library" [ "Uris" ] Tier.Breeze;
+          e "Duffield Hall" [ "Duffield" ] Tier.Breeze;
+          e "Gates Hall" [ "Gates" ] Tier.Updraft;
+          e "Statler Hall" [ "Statler" ] Tier.Updraft;
+          e "Bailey Hall" [ "Bailey" ] Tier.JetStream;
+          e "Barton Hall" [ "Barton" ] Tier.OneInACamillion;
+          e "McGraw Tower"
+            [ "McGraw"; "Clocktower"; "Clock Tower" ]
+            Tier.Interstellar;
+        ];
+    };
+    {
+      id = "disney";
+      text = "Name a Disney animated movie";
+      answers =
+        [
+          e "Frozen" [] Tier.Sand;
+          e "The Lion King" [] Tier.Sand;
+          e "Moana" [] Tier.Breeze;
+          e "Aladdin" [] Tier.Breeze;
+          e "Mulan" [] Tier.Updraft;
+          e "Zootopia" [ "Zootropolis" ] Tier.JetStream;
+          e "The Emperor's New Groove" [] Tier.OneInACamillion;
+          e "Treasure Planet" [] Tier.Interstellar;
         ];
     };
   ]
