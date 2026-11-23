@@ -5,4 +5,10 @@
    Implementation of Tier.
 
    See docs/ARCHITECTURE.md. No implementation yet. *)
-type t = Sand | Breeze | Updraft | JetStream | OneInACamillion | Interstellar
+type t =
+  | Sand
+  | Breeze
+  | Updraft
+  | JetStream
+  | OneInACamillion
+  | Interstellar

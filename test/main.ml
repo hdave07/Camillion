@@ -2,9 +2,11 @@
 
    Owner: everyone
 
-   OUnit test runner. Each owner adds a test_<module>.ml file defining a suite and registers it here.
+   OUnit test runner. Each owner adds a test_<module>.ml file defining a suite
+   and registers it in the list below. *)
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+open OUnit2
 
 let () =
-  OUnit2.run_test_tt_main (OUnit2.( >::: ) "Camillion" [ Test_engine.suite ])
+  run_test_tt_main
+    ("camillion" >::: [ Test_matcher.suite; Test_api.suite; Test_engine.suite ])
