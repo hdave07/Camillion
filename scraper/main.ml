@@ -10,6 +10,8 @@
    MS2: every answer gets no aliases and the placeholder tier. Aliases from
    redirects and tiers from page views come in MS3. *)
 
+open Scraper
+
 (** [output_path] is the bank file the scraper writes. *)
 let output_path = "data/bank/scraped.json"
 

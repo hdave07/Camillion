@@ -1,7 +1,19 @@
 ; Offline build step only. Never linked into server/ or web/.
 
+; The scraper's modules, as a library so that scraper/test/ can test them.
+
+(library
+ (name scraper)
+ (modules config fetch parse)
+ (libraries camillion lwt lwt.unix cohttp-lwt-unix lambdasoup yojson)
+ (preprocess
+  (pps lwt_ppx)))
+
+; The program [make scrape] runs.
+
 (executable
  (name main)
- (libraries camillion lwt lwt.unix cohttp-lwt-unix lambdasoup yojson)
+ (modules main)
+ (libraries scraper lwt lwt.unix yojson)
  (preprocess
   (pps lwt_ppx)))
