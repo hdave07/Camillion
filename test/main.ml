@@ -16,4 +16,5 @@ let () =
            Test_engine.suite;
            Test_bank.suite;
            Test_parse.suite;
+           Test_present.suite;
          ])
