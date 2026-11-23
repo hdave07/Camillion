@@ -1,7 +1,6 @@
-(* fetch.ml
-   Downloads a URL over HTTP, with a disk cache in data/raw/. A page is
-   downloaded at most once; later runs read the saved copy. Failed downloads
-   are never cached. *)
+(* fetch.ml Downloads a URL over HTTP, with a disk cache in data/raw/. A page is
+   downloaded at most once; later runs read the saved copy. Failed downloads are
+   never cached. *)
 
 (** [user_agent] identifies this program to Wikipedia. Wikimedia's API policy
     asks every client to send a descriptive User-Agent. *)
@@ -23,8 +22,11 @@ let cache_path (url : string) : string =
         | _ -> '_')
       url
   in
-  let short = if String.length safe > 100 then String.sub safe 0 100 else safe in
-  (*creates MD5 hash from url, changes to 32 hex characters, takes first 8 characters*)
+  let short =
+    if String.length safe > 100 then String.sub safe 0 100 else safe
+  in
+  (*creates MD5 hash from url, changes to 32 hex characters, takes first 8
+    characters*)
   let hash = String.sub (Digest.to_hex (Digest.string url)) 0 8 in
   (*concat file name, short link, hash*)
   Filename.concat cache_dir (short ^ "-" ^ hash ^ ".cache")
@@ -35,16 +37,16 @@ let read_file (path : string) : string Lwt.t =
   Lwt_io.with_file ~mode:Lwt_io.Input path Lwt_io.read
 
 (** [write_file path text] is a promise that writes [text] to the file at
-    [path], creating it or replacing its old contents.
-    Raises: [Unix.Unix_error] if the file cannot be opened *)
+    [path], creating it or replacing its old contents. Raises: [Unix.Unix_error]
+    if the file cannot be opened *)
 let write_file (path : string) (text : string) : unit Lwt.t =
   Lwt_io.with_file ~mode:Lwt_io.Output path (fun channel ->
       Lwt_io.write channel text)
 
 (** [download url] is a promise of [Ok body] if a GET request to [url] answers
-    with status 200, and [Error message] otherwise: for any other status
-    (e.g. 404 or 429), or if the request itself fails (e.g. no internet).
-    Never raises. Does not read or write the cache. *)
+    with status 200, and [Error message] otherwise: for any other status (e.g.
+    404 or 429), or if the request itself fails (e.g. no internet). Never
+    raises. Does not read or write the cache. *)
 let download (url : string) : (string, string) result Lwt.t =
   let headers = Cohttp.Header.of_list [ ("User-Agent", user_agent) ] in
   try%lwt
@@ -64,9 +66,9 @@ let download (url : string) : (string, string) result Lwt.t =
 
 (** [fetch url] is a promise of [Ok body] for [url]. If [url] was downloaded
     before, [body] comes from the cache and no request is made. Otherwise it is
-    downloaded, and saved to the cache only if the download succeeded.
-    It is [Error message] if the download fails; nothing is cached.
-    Requires: [cache_dir] exists from the repo root. *)
+    downloaded, and saved to the cache only if the download succeeded. It is
+    [Error message] if the download fails; nothing is cached. Requires:
+    [cache_dir] exists from the repo root. *)
 let fetch (url : string) : (string, string) result Lwt.t =
   let path = cache_path url in
   let%lwt cached = Lwt_unix.file_exists path in

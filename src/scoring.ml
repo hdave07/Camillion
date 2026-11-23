@@ -6,7 +6,10 @@
 
    See docs/ARCHITECTURE.md. No implementation yet. *)
 
-type outcome = Correct of Tier.t | Incorrect | Timed_out
+type outcome =
+  | Correct of Tier.t
+  | Incorrect
+  | Timed_out
 
 let time_limit_seconds = 25.0
 
@@ -21,7 +24,10 @@ let miles_for_tier (tier : Tier.t) : int =
 
 let classify_submission ~elapsed_seconds ~matched_tier =
   if elapsed_seconds >= time_limit_seconds then Timed_out
-  else match matched_tier with Some tier -> Correct tier | None -> Incorrect
+  else
+    match matched_tier with
+    | Some tier -> Correct tier
+    | None -> Incorrect
 
 let altitude_gain = function
   | Correct tier -> miles_for_tier tier

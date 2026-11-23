@@ -24,6 +24,7 @@ let placeholder_tier = "Sand"
 let page_url (page : string) : string = "https://en.wikipedia.org/wiki/" ^ page
 
 (*Build the JSON values*)
+
 (** [answer_json c] is the bank JSON for candidate [c]: its name as the
     canonical answer, no aliases, and [placeholder_tier]. *)
 let answer_json (c : Parse.candidate) : Yojson.Basic.t =
@@ -44,13 +45,13 @@ let prompt_json (source : Config.source) (answers : Parse.candidate list) :
       ("text", `String source.text);
       ("answers", `List (List.map answer_json answers));
     ]
-    
+
 (** [scrape_source source] is a promise of [Some json], the bank JSON for
     [source], built from its fetched and parsed list page. If the page cannot be
     fetched or parsed, it prints why and is [None], so that one broken source
     does not stop the others. *)
 let scrape_source (source : Config.source) : Yojson.Basic.t option Lwt.t =
-   (*wait for page*)
+  (*wait for page*)
   match%lwt Fetch.fetch (page_url source.page) with
   | Error msg ->
       print_endline (source.id ^ ": skipped, " ^ msg);
@@ -67,7 +68,7 @@ let scrape_source (source : Config.source) : Yojson.Basic.t option Lwt.t =
 (** [main ()] is a promise that scrapes every source in [Config.sources], one at
     a time, and writes the prompts that succeeded to [output_path]. *)
 let main () : unit Lwt.t =
-   (*scrapes source on each source one after another --> to be changed*)
+  (*scrapes source on each source one after another --> to be changed*)
   let%lwt results = Lwt_list.map_s scrape_source Config.sources in
   (*Keeps the Some s and Fun.id is the function that returns its output*)
   let prompts = List.filter_map Fun.id results in

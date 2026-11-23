@@ -7,11 +7,11 @@
    box and the camel rising in the scene, then a results screen with a share
    row.
 
-   The browser holds no answers. It asks the server for the round
-   (GET /api/round), sends each answer (POST /api/answer) and learns only the
-   tier. Round state, scoring and the timeout rule come from the shared [Engine]
-   and [Scoring] modules; the display helpers come from [Present]. Only DOM,
-   timer and network code lives here. *)
+   The browser holds no answers. It asks the server for the round (GET
+   /api/round), sends each answer (POST /api/answer) and learns only the tier.
+   Round state, scoring and the timeout rule come from the shared [Engine] and
+   [Scoring] modules; the display helpers come from [Present]. Only DOM, timer
+   and network code lives here. *)
 
 open Js_of_ocaml
 open Js_of_ocaml_lwt
@@ -200,7 +200,8 @@ let draw_timer ~elapsed =
   let remaining = Float.max 0. (limit -. elapsed) in
   let colour = if remaining <= 5. then "#c8472b" else "#2f7d6d" in
   set_style "timer-bar"
-    (Printf.sprintf "width:%.1f%%;background:%s" (100. *. remaining /. limit)
+    (Printf.sprintf "width:%.1f%%;background:%s"
+       (100. *. remaining /. limit)
        colour);
   set_text "timer-text" (Printf.sprintf "%d s" (int_of_float (ceil remaining)))
 
@@ -229,7 +230,6 @@ let rec wait_for_answer ~start =
 
 (* Whichever finishes first wins; [Lwt.pick] cancels the other. *)
 let ask ~start = Lwt.pick [ countdown ~start; wait_for_answer ~start ]
-
 let show_feedback html = set_html "feedback" html
 
 let outcome_html ~answer ~balloons = function
@@ -243,7 +243,8 @@ let outcome_html ~answer ~balloons = function
         balloons
   | Scoring.Incorrect ->
       {|<p class="result miss">Not on our list for this prompt. +0 miles</p>|}
-  | Scoring.Timed_out -> {|<p class="result miss">Time&rsquo;s up! +0 miles</p>|}
+  | Scoring.Timed_out ->
+      {|<p class="result miss">Time&rsquo;s up! +0 miles</p>|}
 
 (* Sends one answer, offering a retry if the server cannot be reached. The
    seconds already taken stay fixed, so a failed request costs no time. *)

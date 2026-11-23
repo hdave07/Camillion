@@ -6,9 +6,22 @@
 
    See docs/ARCHITECTURE.md. No implementation yet. *)
 
-type answer = { canonical : string; aliases : string list; tier : Tier.t }
-type prompt = { id : string; text : string; answers : answer list }
-type error = { location : string; message : string }
+type answer = {
+  canonical : string;
+  aliases : string list;
+  tier : Tier.t;
+}
+
+type prompt = {
+  id : string;
+  text : string;
+  answers : answer list;
+}
+
+type error = {
+  location : string;
+  message : string;
+}
 
 (** [get_string json field] recieves a JSON object and a field name, such as
     "id". It tries finding the field name in the JSON. If its finds the field,

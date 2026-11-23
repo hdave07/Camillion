@@ -7,7 +7,7 @@ Authors:
 - Teju Vijay (tv95)
 - Harini Dave (hsd43)
 
-Camillion is a daily trivia game inspired by Krillion in which the rarest valid answer to a prompt wins. Players type an answer to each prompt within 25 seconds. Each answer's rarity tier adds balloons that lift the player's camel to a higher altitude. 
+Camillion is a daily trivia game inspired by [Krillion](https://krillion.io/) in which the rarest valid answer to a prompt wins. Players type an answer to each prompt within 25 seconds. Each answer's rarity tier adds balloons that lift the player's camel to a higher altitude. 
 
 ## Setup (once per machine)
 
@@ -45,7 +45,7 @@ curl localhost:8080/api/round
 curl -X POST -d '{"prompt_id":"cornell","text":"the clock tower"}' localhost:8080/api/answer   # match: McGraw Tower
 curl -X POST -d '{"prompt_id":"disney","text":"zootropolis"}' localhost:8080/api/answer      # match: Zootopia (alternate name)
 curl -X POST -d '{"prompt_id":"fruit","text":"Strawbery"}' localhost:8080/api/answer         # match: Strawberry (typo)
-curl -X POST -d '{"prompt_id":"cornell","text":"Rhodes Hall"}' localhost:8080/api/answer     # no_match
+curl -X POST -d '{"prompt_id":"cornell","text":"Ocaml Building"}' localhost:8080/api/answer     # no_match
 ```
 
 ## To rebuild the question bank from Wikipedia (optional)

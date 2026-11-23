@@ -6,7 +6,10 @@
 
    See docs/ARCHITECTURE.md. No implementation yet. *)
 
-type 'prompt t = { remaining : 'prompt list; altitude : int }
+type 'prompt t = {
+  remaining : 'prompt list;
+  altitude : int;
+}
 
 let pick_prompts ~seed ~count ~prompt_id prompts =
   let seen = Hashtbl.create (List.length prompts) in
@@ -40,7 +43,9 @@ let pick_prompts ~seed ~count ~prompt_id prompts =
 let start prompts = { remaining = prompts; altitude = 0 }
 
 let current_prompt round =
-  match round.remaining with [] -> None | prompt :: _ -> Some prompt
+  match round.remaining with
+  | [] -> None
+  | prompt :: _ -> Some prompt
 
 let altitude round = round.altitude
 

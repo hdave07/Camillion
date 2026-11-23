@@ -1,10 +1,8 @@
-(* parse.ml
-   Turns a Wikipedia list page's HTML into candidate answers. Pure: no network
-   or file IO. *)
+(* parse.ml Turns a Wikipedia list page's HTML into candidate answers. Pure: no
+   network or file IO. *)
 
 open Soup
 
-(** A candidate answer found on a list page. *)
 type candidate = {
   (* the link's text, e.g. "P.S. I Love You"; becomes the canonical answer *)
   name : string;
@@ -12,6 +10,7 @@ type candidate = {
      calls *)
   wiki_title : string;
 }
+(** A candidate answer found on a list page. *)
 
 (** [is_data_row row] is [true] iff [row] contains at least one [<td>] cell.
     Header rows contain only [<th>] cells, so they return [false]. *)
@@ -81,7 +80,8 @@ let extract (extractor : Config.extractor) (html : string) :
           let rows = to_list (table $$ "tr") in
           (*keep if its a data row so no header*)
           let data_rows = List.filter is_data_row rows in
-          (*for each row, get the value inside the Some convert to candidate and drop any None elements*)
+          (*for each row, get the value inside the Some convert to candidate and
+            drop any None elements*)
           let candidates =
             List.filter_map (candidate_of_row column) data_rows
           in

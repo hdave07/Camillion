@@ -6,37 +6,37 @@
 
     Only [Table] exists for MS2. Other page layouts can be supported later by
     adding a case (ex. [Selector of string] for bullet lists,
-    [Category of string] article in Wikipedia category). The
-    compiler will then point to every [match] that must handle the new case. *)
+    [Category of string] article in Wikipedia category). The compiler will then
+    point to every [match] that must handle the new case. *)
 type extractor =
   | Table of {
       (* [index] is which [table.wikitable] on the page holds the answers,
-          counting from 0 in page order. *)
+         counting from 0 in page order. *)
       index : int;
-      (* [column] is which cell of each row holds the answer link, counting
-          from 0. Both [<td>] and [<th>] cells count. Header rows (rows with no
-          [<td>]) are skipped. *)
+      (* [column] is which cell of each row holds the answer link, counting from
+         0. Both [<td>] and [<th>] cells count. Header rows (rows with no
+         [<td>]) are skipped. *)
       column : int;
     }
 
-(** [source] is one prompt the scraper produces, and where its answers come
-    from. *)
 type source = {
   (* [id] uniquely identifies the prompt across all bank files. Scraped ids
-      start with ["wiki-"] so they cannot clash with ids in
-      [data/bank/handwritten.json]. *)
+     start with ["wiki-"] so they cannot clash with ids in
+     [data/bank/handwritten.json]. *)
   id : string;
   (* [text] is the question shown to players. *)
   text : string;
   (* [page] is the Wikipedia page title as it appears in the URL, with
-      underscores instead of spaces, e.g. ["List_of_chemical_elements"]. *)
+     underscores instead of spaces, e.g. ["List_of_chemical_elements"]. *)
   page : string;
   (* [extractor] says how to find the answers on [page]. *)
   extractor : extractor;
 }
+(** [source] is one prompt the scraper produces, and where its answers come
+    from. *)
 
-(** [sources] is every prompt the scraper builds, in output order.
-    Requires: all [id]s are distinct. *)
+(** [sources] is every prompt the scraper builds, in output order. Requires: all
+    [id]s are distinct. *)
 let sources : source list =
   [
     {

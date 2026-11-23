@@ -25,16 +25,17 @@ val altitude_fraction : max_miles:int -> int -> float
 
 val sky_colour : float -> string
 (** [sky_colour fraction] is a CSS [rgb(r,g,b)] colour for the scene background
-    at that altitude fraction (clamped to [0.] to [1.]): a warm desert sky at the
-    bottom, blue in the middle, and near-black space at the top, blending
+    at that altitude fraction (clamped to [0.] to [1.]): a warm desert sky at
+    the bottom, blue in the middle, and near-black space at the top, blending
     linearly between those four stops. *)
 
 val scene_level : int -> float
 (** [scene_level miles] is where the background sits on the [sky_colour] scale
-    for a total of [miles]: [0.] at 0 miles, [0.35] (blue sky) at 16, [0.7] (deep
-    blue) at 64 and [1.] (space) at 100 or more, rising in a straight line
+    for a total of [miles]: [0.] at 0 miles, [0.35] (blue sky) at 16, [0.7]
+    (deep blue) at 64 and [1.] (space) at 100 or more, rising in a straight line
     between those points. It depends on absolute miles, not on round length, so
-    one very rare answer reaches space by itself. A negative total counts as 0. *)
+    one very rare answer reaches space by itself. A negative total counts as 0.
+*)
 
 val zone_name : int -> string
 (** The name of the region the camel is in: ["Desert"] below 8 miles,
@@ -45,5 +46,5 @@ val ground_visibility : int -> float
     0 miles falling in a straight line to [0.] at 16 miles and above. *)
 
 val balloon_row : int -> string
-(** [balloon_row n] is [n] balloon emoji in a row, showing at most 12 so a
-    large total still fits above the camel. Empty for [n <= 0]. *)
+(** [balloon_row n] is [n] balloon emoji in a row, showing at most 12 so a large
+    total still fits above the camel. Empty for [n <= 0]. *)

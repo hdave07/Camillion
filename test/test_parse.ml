@@ -2,9 +2,9 @@
 
    Owner: Harini
 
-   OUnit tests for the scraper's Parse module, on small hand-written HTML
-   tables shaped like Wikipedia's. Expected answers were worked out by hand
-   from each table. *)
+   OUnit tests for the scraper's Parse module, on small hand-written HTML tables
+   shaped like Wikipedia's. Expected answers were worked out by hand from each
+   table. *)
 
 open OUnit2
 open Scraper

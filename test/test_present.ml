@@ -47,8 +47,7 @@ let share_tests =
         ~msg:"emoji must be distinct" );
     ( "share text: tiers, a miss and a timeout" >:: fun _ ->
       (* 4 miles (Sand) + 64 miles (One in a Camillion) = 68. *)
-      assert_equal
-        "Camillion: 68 miles\n\u{1F7EB}\u{1F7E7}\u{2B1B}\u{23F0}"
+      assert_equal "Camillion: 68 miles\n\u{1F7EB}\u{1F7E7}\u{2B1B}\u{23F0}"
         (Present.share_text ~altitude:68
            [
              Scoring.Correct Tier.Sand;
@@ -92,8 +91,8 @@ let sky_tests =
     check "space" 1. "rgb(5,6,25)";
     check "below zero is clamped" (-1.) "rgb(247,220,170)";
     check "above one is clamped" 2. "rgb(5,6,25)";
-    (* Halfway between the first two stops: r = (247+110)/2 = 178.5 -> 179,
-       g = (220+180)/2 = 200, b = (170+235)/2 = 202.5 -> 203. *)
+    (* Halfway between the first two stops: r = (247+110)/2 = 178.5 -> 179, g =
+       (220+180)/2 = 200, b = (170+235)/2 = 202.5 -> 203. *)
     check "halfway between ground and first stop" 0.175 "rgb(179,200,203)";
     ( "sky darkens with altitude" >:: fun _ ->
       let brightness f =
@@ -151,9 +150,8 @@ let scene_tests =
 
 let balloon_tests =
   [
-    ( "none" >:: fun _ -> assert_equal "" (Present.balloon_row 0) );
-    ( "negative is empty" >:: fun _ -> assert_equal "" (Present.balloon_row (-3))
-    );
+    ("none" >:: fun _ -> assert_equal "" (Present.balloon_row 0));
+    ("negative is empty" >:: fun _ -> assert_equal "" (Present.balloon_row (-3)));
     ( "three" >:: fun _ ->
       assert_equal "\u{1F388}\u{1F388}\u{1F388}" (Present.balloon_row 3) );
     ( "capped at twelve" >:: fun _ ->

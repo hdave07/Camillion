@@ -7,7 +7,10 @@
 
    See docs/ARCHITECTURE.md. No implementation yet. *)
 
-type outcome = Correct of Tier.t | Incorrect | Timed_out
+type outcome =
+  | Correct of Tier.t
+  | Incorrect
+  | Timed_out
 
 val time_limit_seconds : float
 val miles_for_tier : Tier.t -> int
