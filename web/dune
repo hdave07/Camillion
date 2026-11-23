@@ -1,6 +1,10 @@
 ; Browser front end, compiled to JavaScript: _build/default/web/main.bc.js
+; Uses the Js_of_ocaml + Lwt stack from lecture (Dom_html, Lwt_js_events,
+; XmlHttpRequest). The ppx provides the ## syntax for JavaScript properties.
 
 (executable
  (name main)
  (modes js)
- (libraries camillion brr js_of_ocaml-lwt lwt))
+ (libraries camillion js_of_ocaml js_of_ocaml-lwt lwt yojson)
+ (preprocess
+  (pps js_of_ocaml-ppx)))
