@@ -62,6 +62,13 @@ This downloads the Wikipedia list pages in `scraper/config.ml` (cached in
 - The server plays three temporary demo prompts (fruit, Cornell buildings,
   Disney movies) from `server/demo_round.ml`. It doesn't yet load
   `data/bank/*.json` or use the round engine to pick prompts.
+- The scraper (`make scrape`) writes four real prompts from Wikipedia to
+  `data/bank/scraped.json`: chemical elements, African countries, European
+  countries and Beatles songs. Every answer has no aliases yet and the
+  placeholder tier `Sand`
+- The bank loader (`src/bank.ml`) checks bank JSON and reports malformed
+  entries instead of loading them. It accepts all of `scraped.json` (4 prompts,
+  0 errors), but the server doesn't call it yet.
 - Balloon counts are placeholders until they're added to the scoring module.
 - `make play` (the terminal version in `bin/`) is not implemented yet.
 

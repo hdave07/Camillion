@@ -134,4 +134,10 @@ let suite =
          "parse invalid answer" >:: test_parse_invalid_answer;
          "load valid bank" >:: test_load_valid_bank;
          "load invalid root" >:: test_load_invalid_root;
+         "load keeps valid answers" >:: test_load_keeps_valid_answers;
+         "load skips prompt with no valid answers"
+         >:: test_load_skips_prompt_with_no_valid_answers;
+         "load skips prompt missing id" >:: test_load_skips_prompt_missing_id;
+         "load skips prompt with empty answers"
+         >:: test_load_skips_prompt_with_empty_answers;
        ]
