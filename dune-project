@@ -26,6 +26,7 @@
   dune
   yojson
   lwt
+  lwt_ppx
   dream
   brr
   js_of_ocaml
