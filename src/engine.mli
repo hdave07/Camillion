@@ -6,7 +6,7 @@
    explicit seed (date-based for the daily challenge). Pure and reproducible.
    Also game state and the countdown rule.
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 type 'prompt t
 

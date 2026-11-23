@@ -4,7 +4,7 @@
 
    Implementation of Bank.
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 type answer = {
   canonical : string;

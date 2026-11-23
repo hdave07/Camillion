@@ -4,7 +4,7 @@
 
    OUnit tests for Engine: same seed gives the same round; prompts are distinct.
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 open OUnit2
 open Camillion

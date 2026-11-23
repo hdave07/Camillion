@@ -4,7 +4,7 @@
 
    Implementation of Engine.
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 type 'prompt t = {
   remaining : 'prompt list;

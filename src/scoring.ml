@@ -4,7 +4,7 @@
 
    Implementation of Scoring.
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 type outcome =
   | Correct of Tier.t

@@ -5,7 +5,7 @@
    Turns a tier into balloons and altitude (miles); a timed-out answer adds
    nothing.
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 type outcome =
   | Correct of Tier.t

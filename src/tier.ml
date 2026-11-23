@@ -4,7 +4,7 @@
 
    Implementation of Tier.
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 type t =
   | Sand
   | Breeze

@@ -6,7 +6,7 @@
    in a Camillion, Interstellar) and the miles each is worth (4, 8, 16, 32, 64,
    100).
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 type t =
   | Sand

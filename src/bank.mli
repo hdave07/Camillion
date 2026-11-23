@@ -6,7 +6,7 @@
    loader that validates bank JSON and reports malformed entries instead of
    loading them. Takes already-parsed JSON (no file IO here).
 
-   See docs/ARCHITECTURE.md. No implementation yet. *)
+   See docs/ARCHITECTURE.md. *)
 
 type answer = {
   canonical : string;
