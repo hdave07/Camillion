@@ -8,4 +8,5 @@
 open OUnit2
 
 let () =
-  run_test_tt_main ("camillion" >::: [ Test_matcher.suite; Test_api.suite ])
+  run_test_tt_main
+    ("camillion" >::: [ Test_matcher.suite; Test_api.suite; Test_engine.suite ])
